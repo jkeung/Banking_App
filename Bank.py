@@ -1,5 +1,6 @@
 __author__ = 'jkeung'
-
+from Checking import Checking
+from Savings import Savings
 
 class Bank(object):
     """Bank class represents a single bank
@@ -17,6 +18,7 @@ class Bank(object):
 
         """
         self.customers = []
+        self.account_number_counter = 1000000
 
     def add_customer(self, customer):
         """Function to add a customer to a bank
@@ -55,6 +57,14 @@ class Bank(object):
                 print("Please specify a number from the list of customers. \n")
 
         return None
+
+    def add_account(self, initial_deposit, account_type):
+        if account_type == "Checking":
+            account = Checking(initial_deposit, self.account_number_counter)
+        elif account_type == "Savings":
+            account = Savings(initial_deposit, self.account_number_counter)
+        self.account_number_counter += 1
+        return account
 
     def _print_customer_list(self):
         """Function to print a list of customers

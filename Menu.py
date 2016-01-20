@@ -25,10 +25,10 @@ class Menu(object):
             None
 
         """
-        if not os.path.abspath('data/bank.pkl'):
-            self.bank = pickle.load(open(os.path.abspath('data/bank.pkl')), 'r')
-        else:
-            self.bank = Bank()
+        self.bank = Bank()
+        if os.path.exists(os.path.abspath('data/bank.pkl')):
+            self.bank = self.load_state()
+
         self.exit = False
 
     @staticmethod
@@ -85,11 +85,7 @@ class Menu(object):
         if not initial_deposit:
             return None
 
-        if account_type == "Checking":
-            account = Checking(initial_deposit)
-        elif account_type == "Savings":
-            account = Savings(initial_deposit)
-
+        account = self.bank.add_account(initial_deposit, account_type)
         customer = Customer(first_name, last_name, ssn, account)
         self.bank.add_customer(customer)
 
@@ -106,7 +102,7 @@ class Menu(object):
             return None
 
         account = customer.account
-        print("You currently have a balance of {0:.2f}".format(account.balance))
+        account.print_balance()
         amount = DataValidation.check_positive_float("How much would you like to deposit? ")
 
         if amount == 0:
@@ -134,7 +130,7 @@ class Menu(object):
             return None
 
         account = customer.account
-        print("You currently have a balance of {0:.2f}".format(account.balance))
+        account.print_balance()
         amount = DataValidation.check_positive_float("How much would you like to withdraw? ")
 
         if amount == 0:
@@ -231,7 +227,7 @@ class Menu(object):
             None
 
         """
-        pickle.dump(self.bank, os.path.abspath('data/bank.pkl'))
+        pickle.dump(self.bank, open(os.path.abspath('data/bank.pkl'), 'w'))
 
     def run_menu(self):
         """Function to run the menu
@@ -245,6 +241,7 @@ class Menu(object):
             self.print_menu()
             self.choice = self.get_choice()
             self.perform_action()
+            self.save_state()
 
     def run(self):
         self.run_menu()

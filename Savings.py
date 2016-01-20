@@ -15,13 +15,13 @@ class Savings(Account):
     """
     account_type = "Savings"
 
-    def __init__(self, initial_deposit):
+    def __init__(self, initial_deposit, account_number):
         """Constructor for the Savings Class
 
         Args:
         initial_deposit (float): The initial deposit that will be added to the account
         """
-        super(Savings, self).__init__(initial_deposit)
+        super(Savings, self).__init__(initial_deposit, account_number)
         self._update_interest()
 
     def _update_interest(self):

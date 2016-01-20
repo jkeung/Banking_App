@@ -13,10 +13,8 @@ class Account(object):
 
 
     """
-    account_number = 1000000
-    withdrawal_charge = 5.0
 
-    def __init__(self, initial_deposit):
+    def __init__(self, initial_deposit, account_number):
         """Constructor for the Account Class
 
         Args:
@@ -24,9 +22,9 @@ class Account(object):
         """
 
         self.balance = initial_deposit
-        self.account_number = Account.account_number
+        self.account_number = account_number
         self.interest_rate = 0.0
-        Account.account_number += 1
+        self.withdrawal_charge = 5.0
 
     def withdraw(self, amount):
         """Function to withdraw money from an account. All withdrawals incur a fixed fee of $5.00
@@ -36,7 +34,7 @@ class Account(object):
         """
         # logic to check if customer is able to make withdrawal
         if amount + self.withdrawal_charge > self.balance:
-            print ("Insufficient Funds")
+            print ("Insufficient Funds \n")
             return None
         # update interest rates, and subtract withdrawal + fees
         self._update_interest()
@@ -71,3 +69,6 @@ class Account(object):
 
         """
         pass
+
+    def print_balance(self):
+        print("You currently have a balance of {0:.2f}".format(self.balance))

@@ -14,14 +14,14 @@ class Checking(Account):
     """
     account_type = "Checking"
 
-    def __init__(self, initial_deposit):
+    def __init__(self, initial_deposit, account_number):
         """Constructor for the Checking Class
 
         Args:
         initial_deposit (float): The initial deposit that will be added to the account
 
         """
-        super(Checking, self).__init__(initial_deposit)
+        super(Checking, self).__init__(initial_deposit, account_number)
         self._update_interest()
 
     def _update_interest(self):
