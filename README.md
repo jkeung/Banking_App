@@ -79,5 +79,6 @@ This application is still a work in progress and a number of items can be added 
 - Persist data into a SQL database, currently data is saved and loaded into a Pickle file
 - Transfer money between accounts
 - Remove accounts
+- Security and authentication for accounts
 - View recent transactions
 - Add more test cases! 
