@@ -1,7 +1,8 @@
 import unittest
-from Bank import Bank
-from Customer import Customer
-from Account import Account
+
+from banking.Account import Account
+from banking.Bank import Bank
+from banking.Customer import Customer
 
 
 class TestSavings(unittest.TestCase):
@@ -33,8 +34,6 @@ class TestSavings(unittest.TestCase):
         customer = Customer('john', 'smith', '123456789', account)
         bank.add_customer(customer)
         bank.select_customer()
-
-
 
 
 

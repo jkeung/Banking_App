@@ -1,5 +1,4 @@
-__author__ = 'jkeung'
-
+from __future__ import absolute_import
 
 class Customer(object):
     """Customer class represents a single customer at a bank

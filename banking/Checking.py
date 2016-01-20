@@ -1,5 +1,5 @@
-__author__ = 'jkeung'
-from Account import Account
+from __future__ import absolute_import
+from banking.Account import Account
 
 
 class Checking(Account):
@@ -23,6 +23,7 @@ class Checking(Account):
         """
         super(Checking, self).__init__(initial_deposit, account_number)
         self._update_interest()
+
 
     def _update_interest(self):
         """Function to update the interest in the account based on how much money is currently in the account. Checking

@@ -1,5 +1,4 @@
-__author__ = 'jkeung'
-
+from __future__ import absolute_import
 
 class Account(object):
     """Account class represents a customer's bank account.
@@ -11,7 +10,6 @@ class Account(object):
         interest_rate (float): The interest rate that a customer will receive
         withdrawal_charge (float): A fixed withdrawal_charge that is added to all withdrawals from an account
 
-
     """
 
     def __init__(self, initial_deposit, account_number):
@@ -19,10 +17,11 @@ class Account(object):
 
         Args:
         initial_deposit (float): The initial deposit that will be added to the account
-        """
+        account_number (int): A unique identifier for a given account
 
-        self.balance = initial_deposit
+        """
         self.account_number = account_number
+        self.balance = initial_deposit
         self.interest_rate = 0.0
         self.withdrawal_charge = 5.0
 
@@ -31,6 +30,7 @@ class Account(object):
 
         Args:
             amount (float): The amount that will removed from the account.
+
         """
         # logic to check if customer is able to make withdrawal
         if amount + self.withdrawal_charge > self.balance:
@@ -49,13 +49,15 @@ class Account(object):
 
         Args:
             amount (float): The amount that will be added to the account.
+
         """
         # logic to check if customer is able to make deposit
         if amount < 0:
             print("Cannot deposit a negative amount")
             return None
-
+        # update interest based on previous deposit
         self._update_interest()
+        # deposit money
         self.balance += amount + amount * self.interest_rate
         print("Successfully deposited ${0:.2f} with an interest of {1:.2f}%".format(amount, self.interest_rate*100))
         print("Your new balance is ${0:.2f}".format(self.balance))
@@ -71,4 +73,10 @@ class Account(object):
         pass
 
     def print_balance(self):
+        """Function to print how much money is currently in the account.
+
+        Args:
+            None
+
+        """
         print("You currently have a balance of {0:.2f}".format(self.balance))

@@ -1,5 +1,6 @@
 import unittest
-from Savings import Savings
+
+from banking.Savings import Savings
 
 
 class TestSavings(unittest.TestCase):

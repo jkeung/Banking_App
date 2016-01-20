@@ -1,6 +1,7 @@
-__author__ = 'jkeung'
-from Checking import Checking
-from Savings import Savings
+from __future__ import absolute_import
+from banking.Checking import Checking
+from banking.Savings import Savings
+
 
 class Bank(object):
     """Bank class represents a single bank
@@ -36,29 +37,36 @@ class Bank(object):
             None
 
         """
-        selection = -1
-
         if not self.customers:
             print("You have no customers, please create some. \n")
             return None
 
-        while selection not in range(len(self.customers)):
+        self._print_customer_list()
 
-            self._print_customer_list()
-            # self._get_customer_selection()
-            try:
-                selection = int(raw_input("Please select an account: "))
-                if selection == 0:
-                    return None
+        selection = raw_input("Please select an account: ")
+        if selection == "0":
+            return None
 
-                assert selection > 0
-                return self.customers[selection-1]
-            except (IndexError, AssertionError, ValueError):
-                print("Please specify a number from the list of customers. \n")
+        if not selection.isdigit():
+            print("Please specify a number from the list of customers. \n")
+            return self.select_customer()
 
-        return None
+        selection = int(selection)
+
+        if selection not in range(len(self.customers)):
+            print("Please specify a number from the list of customers. \n")
+            return self.select_customer()
+
+        return self.customers[selection-1]
 
     def add_account(self, initial_deposit, account_type):
+        """Function to add an account to a bank
+
+        Args:
+            initial_deposit (float): The initial deposit needed to start an account
+            account_type (string): Identifier of a checking or savings account
+
+        """
         if account_type == "Checking":
             account = Checking(initial_deposit, self.account_number_counter)
         elif account_type == "Savings":
@@ -77,19 +85,3 @@ class Bank(object):
             print("{0}. {1}".format(i+1, customer.display_info()))
         print("")
 
-    def _get_customer_selection(self):
-        """Function to select from a list of customers
-
-        Args:
-            None
-
-        """
-        try:
-            selection = int(raw_input("Please select an account: "))
-            if selection == 0:
-                return None
-
-            assert selection > 0
-            return self.customers[selection-1]
-        except (IndexError, AssertionError, ValueError):
-            print("Please specify a number from the list of customers. \n")

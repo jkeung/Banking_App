@@ -1,5 +1,5 @@
-__author__ = 'jkeung'
-from Account import Account
+from __future__ import absolute_import
+from banking.Account import Account
 
 
 class Savings(Account):

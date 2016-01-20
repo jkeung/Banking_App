@@ -1,5 +1,6 @@
 import unittest
-from Checking import Checking
+
+from banking.Checking import Checking
 
 
 class TestChecking(unittest.TestCase):

@@ -1,12 +1,9 @@
-__author__ = 'jkeung'
-from Checking import Checking
-from Savings import Savings
-from Customer import Customer
-from Bank import Bank
-from util import DataValidation
-import pickle
+from __future__ import absolute_import
 import os
-
+import pickle
+from banking.Bank import Bank
+from banking.Customer import Customer
+from banking.tools.util import DataValidation
 
 
 class Menu(object):
@@ -70,21 +67,27 @@ class Menu(object):
 
         """
         account_type = DataValidation.check_valid_account_type("Would you like a checking or savings account? ")
+        # exit create_account if user types '0' without proceeding to first_name prompt
         if not account_type:
             return None
         first_name = DataValidation.check_valid_name("What is your first name? ")
+        # exit create_account if user types '0' without proceeding to last_name prompt
         if not first_name:
             return None
         last_name = DataValidation.check_valid_name("What is your last name? ")
+        # exit create_account if user types '0' without proceeding to ssn prompt
         if not last_name:
             return None
         ssn = DataValidation.check_valid_ssn("What is your social security number? ")
+        # exit create_account if user types '0' without proceeding to initial deposit prompt
         if not ssn:
             return None
         initial_deposit = DataValidation.get_valid_initial_deposit(account_type, "What is your initial deposit? ")
+        # exit create_account if user types '0' without proceeding to instanciate account
         if not initial_deposit:
             return None
 
+        # create account and add customer to bank
         account = self.bank.add_account(initial_deposit, account_type)
         customer = Customer(first_name, last_name, ssn, account)
         self.bank.add_customer(customer)
@@ -97,17 +100,20 @@ class Menu(object):
 
         """
         customer = self.bank.select_customer()
-
+        # exit make_deposit if user types '0' without proceeding to deposit prompt
         if not customer:
             return None
 
+        # select customer's account, display current balances, and prompt for deposit amount
         account = customer.account
         account.print_balance()
         amount = DataValidation.check_positive_float("How much would you like to deposit? ")
 
+        # exit make_deposit if user types '0' without proceeding to deposit prompt
         if amount == 0:
             return None
 
+        # deposit amount into account
         account.deposit(amount)
 
         return None
@@ -120,22 +126,27 @@ class Menu(object):
 
         """
         customer = self.bank.select_customer()
-
+        # exit make_withdrawal if user types '0' without proceeding to withdrawal prompt
         if not customer:
             return None
 
+        # give customer ability to exit if they do not want to incur fee
         proceed = DataValidation.check_valid_yes_no("Withdrawals incur a $5.00 fee, would you like to proceed? (Y/N) ")
 
+        # exit make_deposit if user types '0' without proceeding to deposit prompt
         if not proceed:
             return None
 
+        # select customer's account, display current balances, and prompt for withdrawal amount
         account = customer.account
         account.print_balance()
         amount = DataValidation.check_positive_float("How much would you like to withdraw? ")
 
+        # exit make_deposit if user types '0' without proceeding to withdrawal prompt
         if amount == 0:
             return None
 
+        # withdraw amount from account
         account.withdraw(amount)
 
         return None
@@ -148,14 +159,13 @@ class Menu(object):
 
         """
         customer = self.bank.select_customer()
-
+        # exit make_withdrawal if user types '0' without proceeding to withdrawal prompt
         if not customer:
             return None
 
+        # print the customer object
         print(customer)
-        raw_input("Press enter key to continue...")
-        print("")
-        print("")
+        raw_input("Press enter key to continue...\n")
 
         return None
 
@@ -194,21 +204,18 @@ class Menu(object):
             None
 
         """
-        choice = -1
+        choice = raw_input('Enter your selection please: ')
 
-        while choice < 0 or choice > 4:
+        if not choice.isdigit():
+            print("Please input a valid selection.")
+            return self.get_choice()
+        choice = int(choice)
 
-            try:
-                choice = int(raw_input('Enter your selection please: '))
-                print("")
-
-                if choice < 0 or choice > 4:
-                    print("Please select a valid choice between 0 and 4")
-
-            except ValueError:
-                print("Please input a valid selection, numbers only.")
-
+        if choice < 0 or choice > 4:
+            print("Please select a valid choice between 0 and 4")
+            return self.get_choice()
         return choice
+
 
     def load_state(self):
         """Function to load the current state of the bank

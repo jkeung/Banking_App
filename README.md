@@ -10,7 +10,7 @@ An app that allows you to simulate a bank by allowing a teller to create custome
 
 ## Setup
 
-This code is portable across the following OS's: Linux distributions, Mac and Windows OS's. Scripts were written using Python 2.7 and have not been tested for portability to Python 3.X.
+This code is portable across the following OS's: Linux distributions, Mac and Windows OS's. Scripts were written using **Python 2.7** and have not been tested for portability to Python 3.X.
 
 You are encouraged to use a python virtual environment using virtualenv and pip. 
 
