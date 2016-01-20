@@ -52,13 +52,13 @@ class Bank(object):
             print("Please specify a number from the list of customers. \n")
             return self.select_customer()
 
-        selection = int(selection)
+        selection = int(selection) - 1
 
         if selection not in range(len(self.customers)):
             print("Please specify a number from the list of customers. \n")
             return self.select_customer()
 
-        return self.customers[selection-1]
+        return self.customers[selection]
 
     def add_account(self, initial_deposit, account_type):
         """Function to add an account to a bank
