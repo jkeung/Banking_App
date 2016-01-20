@@ -111,7 +111,7 @@ class Menu(object):
         amount = DataValidation.check_positive_float("How much would you like to deposit? ")
 
         # exit make_deposit if user types '0' without proceeding to deposit prompt
-        if amount == 0:
+        if not amount:
             return None
 
         # deposit amount into account
