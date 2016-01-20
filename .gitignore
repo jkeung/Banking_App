@@ -1,2 +1,5 @@
 # Compiled Files
 *.pyc
+
+# Pickle Files
+*.pkl

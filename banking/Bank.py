@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from __future__ import absolute_import
 from banking.Checking import Checking
 from banking.Savings import Savings
@@ -84,4 +85,3 @@ class Bank(object):
         for i, customer in enumerate(self.customers):
             print("{0}. {1}".format(i+1, customer.display_info()))
         print("")
-
