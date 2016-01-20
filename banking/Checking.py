@@ -25,7 +25,6 @@ class Checking(Account):
         super(Checking, self).__init__(initial_deposit, account_number)
         self._update_interest()
 
-
     def _update_interest(self):
         """Function to update the interest in the account based on how much money is currently in the account. Checking
            accounts do not accrue interest.
@@ -44,8 +43,8 @@ class Checking(Account):
 
         """
         output = ""
-        output+="Account Type: {0}\n".format(self.account_type)
-        output+="Account Number: {0}\n".format(self.account_number)
-        output+="Balance: {0:.2f}\n".format(self.balance)
-        output+="Interest Rate: {0}%\n".format(self.interest_rate*100)
+        output += "Account Type: {0}\n".format(self.account_type)
+        output += "Account Number: {0}\n".format(self.account_number)
+        output += "Balance: {0:.2f}\n".format(self.balance)
+        output += "Interest Rate: {0}%\n".format(self.interest_rate*100)
         return output

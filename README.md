@@ -18,7 +18,7 @@ You are encouraged to use a python virtual environment using virtualenv and pip.
 
 ### Install requirements:
 
-```$ pip install -r requirements.txt```
+There are no external imports of packages or modules that are not native to Python in this program.
 
 #### Description of modules imported and application
 

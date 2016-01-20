@@ -2,6 +2,7 @@
 from __future__ import absolute_import
 from banking.Menu import Menu
 
+
 def main():
     """Engine to run bank app.
     Args:

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 from __future__ import absolute_import
 
+
 class Account(object):
     """Account class represents a customer's bank account.
 

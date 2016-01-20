@@ -19,7 +19,7 @@ class TestSavings(unittest.TestCase):
     def test_add_customer(self):
 
         bank = Bank()
-        account = Account(100)
+        account = Account(100, 1000000)
         customer = Customer('john', 'smith', '123456789', account)
         bank.add_customer(customer)
         self.assertEquals(bank.customers[0], customer)
@@ -31,7 +31,7 @@ class TestSavings(unittest.TestCase):
     def test_select_customer(self):
 
         bank = Bank()
-        account = Account(100)
+        account = Account(100, 1000000)
         customer = Customer('john', 'smith', '123456789', account)
         bank.add_customer(customer)
         bank.select_customer()

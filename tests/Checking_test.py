@@ -1,66 +1,56 @@
 #!/usr/bin/env python
 from __future__ import absolute_import
-import unittest
-
-from banking.Checking import Checking
 
 
-class TestChecking(unittest.TestCase):
+class Customer(object):
+    """Customer class represents a single customer at a bank
 
-    def test_create_checking_accounts(self):
-        test_account1 = Checking(100)
+    Attributes:
+        first_name (string): The customer's first name
+        last_name (string): The customer's last name
+        ssn (string): The customer's social security number
+        account (Account): The customer's account
 
-        self.assertGreaterEqual(test_account1.account_number, 1000000)
-        self.assertEquals(test_account1.balance, 100)
-        self.assertEquals(test_account1.account_type, "Checking")
-        self.assertEquals(test_account1.interest_rate, 0)
+    """
 
-    def test_withdraw(self):
-        test_account1 = Checking(100)
-        test_account1.withdraw(50)
+    def __init__(self, first_name, last_name, ssn, account):
+        """Constructor for the Customer Class
 
-        self.assertEqual(test_account1.balance, 45)
+        Args:
+        first_name (string): The customer's first name
+        last_name (string): The customer's last name
+        ssn (string): The customer's social security number
+        account (Account): The customer's account
 
-    def test_deposit(self):
-        test_account1 = Checking(100)
-        test_account1.deposit(100)
+        """
+        self.first_name = first_name
+        self.last_name = last_name
+        self.ssn = ssn
+        self.account = account
 
-        self.assertEqual(test_account1.balance, 200)
+    def __repr__(self):
+        """Representation of Customer class object
 
-    def test_withdraw_string(self):
-        test_account1 = Checking(100)
+        Args:
+            None
 
-        with self.assertRaises(TypeError):
-            test_account1.withdraw('blah')
+        """
+        output = ""
+        output += "Customer Information\n"
+        output += "First Name: {0}\n".format(self.first_name)
+        output += "Last Name: {0}\n".format(self.last_name)
+        output += "SSN: {0}\n".format(self.ssn)
+        output += "{0}".format(self.account)
+        return output
 
-    def test_deposit_string(self):
-        test_account1 = Checking(100)
+    def display_info(self):
+        """Function to display the key attributes of an account in a shortened format
 
-        with self.assertRaises(TypeError):
-            test_account1.deposit('blahblah')
+        Args:
+            None
 
-    def test_withdraw_none(self):
-        test_account1 = Checking(100)
-
-        with self.assertRaises(TypeError):
-            test_account1.withdraw()
-
-    def test_deposit_none(self):
-        test_account1 = Checking(100)
-
-        with self.assertRaises(TypeError):
-            test_account1.deposit()
-
-    def test_withdraw_negative(self):
-        test_account1 = Checking(100)
-
-        self.assertEquals(test_account1.withdraw(-100), None)
-
-    def test_deposit_negative(self):
-        test_account1 = Checking(100)
-
-        self.assertEquals(test_account1.deposit(-1), None)
-
-if __name__ == '__main__':
-    unittest.main()
-
+        """
+        output = ""
+        output += "First Name:{0} Last Name:{1} SSN: {2} Account #:{3} Balance:{4:.2f}" \
+            .format(self.first_name, self.last_name, self.ssn, self.account.account_number, self.account.balance)
+        return output

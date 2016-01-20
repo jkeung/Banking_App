@@ -217,7 +217,6 @@ class Menu(object):
             return self.get_choice()
         return choice
 
-
     def load_state(self):
         """Function to load the current state of the bank
 
@@ -226,7 +225,6 @@ class Menu(object):
 
         """
         return pickle.load(open(os.path.abspath('data/bank.pkl'), 'r'))
-
 
     def save_state(self):
         """Function to save the current state of the bank
