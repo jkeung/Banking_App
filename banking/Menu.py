@@ -41,8 +41,7 @@ class Menu(object):
         print("***********                                            *********************")
         print("***********  Welcome to Jason's Awesome Banking App!!  *********************")
         print("***********                                            *********************")
-        print("****************************************************************************")
-        print("")
+        print("****************************************************************************\n")
 
     @staticmethod
     def print_menu():
@@ -52,7 +51,7 @@ class Menu(object):
             None
 
         """
-        print("Please make a selection ")
+        print("\nPlease make a selection ")
         print("1. Create a new account")
         print("2. Make a deposit")
         print("3. Make a withdrawal")
@@ -144,7 +143,7 @@ class Menu(object):
         amount = DataValidation.check_positive_float("How much would you like to withdraw? ")
 
         # exit make_deposit if user types '0' without proceeding to withdrawal prompt
-        if amount == 0:
+        if not amount:
             return None
 
         # withdraw amount from account
@@ -166,7 +165,7 @@ class Menu(object):
 
         # print the customer object
         print(customer)
-        raw_input("Press enter key to continue...\n")
+        raw_input("Press enter key to continue...")
 
         return None
 
