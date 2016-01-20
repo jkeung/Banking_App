@@ -20,11 +20,9 @@ You are encouraged to use a python virtual environment using virtualenv and pip.
 
 There are no external imports of packages or modules that are not native to Python in this program.
 
-#### Description of modules imported and application
-
 ## Run Application
 
-Application can be run by simply running the following shell script from the root directory
+Application can be run by simply running the following shell script from the root directory of the application folder.
 
 ```$ source bin/banking_app.sh```
 
