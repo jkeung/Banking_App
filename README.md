@@ -1,5 +1,4 @@
 # Banking_App
-Capital One Coding Challenge
 
 # Jason's Awesome Banking App!
 An app that allows you to simulate a bank by allowing a teller to create customers, make deposits, make withdrawals, and check on account customer details.
